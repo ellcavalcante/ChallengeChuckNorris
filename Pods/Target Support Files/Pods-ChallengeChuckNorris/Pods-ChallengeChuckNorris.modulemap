@@ -1,0 +1,6 @@
+framework module Pods_ChallengeChuckNorris {
+  umbrella header "Pods-ChallengeChuckNorris-umbrella.h"
+
+  export *
+  module * { export * }
+}
