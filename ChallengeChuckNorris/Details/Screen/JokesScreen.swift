@@ -1,13 +1,22 @@
 //
-//  HomeScreen.swift
+//  JokesScreen.swift
 //  ChallengeChuckNorris
 //
-//  Created by Ellington Cavalcante on 17/07/23.
+//  Created by Ellington Cavalcante on 18/07/23.
 //
 
 import UIKit
 
-class HomeScreen: UIView {
+protocol JokesScreenProtocol: AnyObject {
+    func actionBackButton()
+}
+
+class JokesScreen: UIView {
+    
+    private weak var delegate: JokesScreenProtocol?
+    func delegate(delegate: JokesScreenProtocol?) {
+        self.delegate = delegate
+    }
     
     private lazy var topYellowView: UIView = {
         let view = UIView()
@@ -26,44 +35,47 @@ class HomeScreen: UIView {
     private lazy var categoriesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Categories"
+        label.text = "Animal"
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
     
-    lazy var jokesTableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.separatorStyle = .none
-        return tableView
+    lazy var backButton: UIButton = {
+       let backButton = UIButton()
+        backButton.translatesAutoresizingMaskIntoConstraints = false
+        let config = UIImage.SymbolConfiguration(pointSize: 30)
+        backButton.setImage(UIImage(systemName: "chevron.backward")?.withConfiguration(config), for: .normal)
+        backButton.setTitle("Categories", for: .normal)
+        backButton.tintColor = .white
+        backButton.addTarget(self, action: #selector(tappedBackButton), for: .touchUpInside)
+        return backButton
     }()
-
+    
+    @objc func tappedBackButton() {
+        self.delegate?.actionBackButton()
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview()
-        setUpConstraints()
         configBackground()
+        setUpConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configTableViewProtocols(delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
-        jokesTableView.delegate = delegate
-        jokesTableView.dataSource = dataSource
+    private func addSubview() {
+        addSubview(topView)
+        addSubview(topYellowView)
+        addSubview(categoriesLabel)
+        addSubview(backButton)
     }
     
     private func configBackground() {
         backgroundColor = .white
-    }
-    
-    private func addSubview() {
-        addSubview(topYellowView)
-        addSubview(topView)
-        addSubview(categoriesLabel)
-        addSubview(jokesTableView)
     }
     
     private func setUpConstraints() {
@@ -80,12 +92,13 @@ class HomeScreen: UIView {
             topYellowView.heightAnchor.constraint(equalToConstant: 80),
         
             categoriesLabel.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
-            categoriesLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: -25),
+            categoriesLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             
-            jokesTableView.topAnchor.constraint(equalTo: topView.bottomAnchor),
-            jokesTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            jokesTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            jokesTableView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+            backButton.centerYAnchor.constraint(equalTo: categoriesLabel.centerYAnchor),
+            backButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 5),
+            backButton.heightAnchor.constraint(equalToConstant: 25),
+            backButton.widthAnchor.constraint(equalToConstant: 120),
+            
         ])
     }
 }

@@ -15,10 +15,28 @@ protocol CategoriesJokesDelegate: GenericService {
 
 class CategoriesJokesService: CategoriesJokesDelegate {
     func getCategoriesData(fromURL url: String, completion: @escaping completion<Categories?>) {
+        let url: String = url
         
+        AF.request(url, method: .get).validate().responseDecodable(of: Categories.self) { response in
+            switch response.result {
+            case .success(let success):
+                completion(success, nil)
+            case .failure(let error):
+                completion(nil, Error.errorRequest(error))
+            }
+        }
     }
     
     func getCategoriesDataFromJson(fromFileName name: String, completion: (Categories?, Error?) -> Void) {
-        
+        if let name = Bundle.main.url(forResource: name, withExtension: "json"){
+            do {
+                let data = try Data(contentsOf: name)
+                let listConstructors = try JSONDecoder().decode(Categories.self, from: data)
+                completion(listConstructors, nil)
+            } catch {
+                completion(nil, Error.fileDecodingFailed(name: "categoriJokes", error))
+            }
+        }
     }
 }
+
