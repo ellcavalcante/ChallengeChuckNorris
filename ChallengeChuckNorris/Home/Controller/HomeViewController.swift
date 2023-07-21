@@ -7,10 +7,20 @@
 
 import UIKit
 
+protocol HomeViewControllerProtocol {
+    func changeTitle(title: CategoriesTest)
+}
+
 class HomeViewController: UIViewController {
+    
+    private var delegate: HomeViewControllerProtocol?
+    func delegate(delegate: HomeViewControllerProtocol?) {
+        self.delegate = delegate
+    }
     
     var homeScreen: HomeScreen?
     var homeViewModel: HomeViewModel = HomeViewModel()
+    
     var categories: [CategoriesTest] = [CategoriesTest(categories: "Animal"),
                                         CategoriesTest(categories: "Career"),
                                         CategoriesTest(categories: "Celebrity"),
@@ -48,7 +58,7 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return homeViewModel.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,11 +73,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let jokesVC: JokesViewController = JokesViewController()
-        
-
-        
-        self.navigationController?.pushViewController(jokesVC, animated: true)
+        let vc = JokesViewController(data: homeViewModel.loadCurrentDriver(indexPath: indexPath))
+        self.navigationController?.pushViewController(vc, animated: true)
+        delegate?.changeTitle(title: homeViewModel.loadCurrentDriver(indexPath: indexPath))
     }
 }
 

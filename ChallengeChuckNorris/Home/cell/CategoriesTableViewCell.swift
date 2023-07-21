@@ -11,7 +11,7 @@ class CategoriesTableViewCell: UITableViewCell {
 
     static let identifier: String = String(describing: CategoriesTableViewCell.self)
     
-    lazy var categoriesLabel: UILabel = {
+    public lazy var categoriesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
@@ -20,7 +20,7 @@ class CategoriesTableViewCell: UITableViewCell {
         return label
     }()
     
-    lazy var fowardButton: UIImageView = {
+    private lazy var fowardButton: UIImageView = {
        let fowardButton = UIImageView()
         fowardButton.translatesAutoresizingMaskIntoConstraints = false
         fowardButton.tintColor = .black
@@ -38,7 +38,7 @@ class CategoriesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setUpCell(data: CategoriesTest) {
+    public func setUpCell(data: CategoriesTest) {
         self.categoriesLabel.text = data.categories
     }
     

@@ -23,7 +23,7 @@ class HomeScreen: UIView {
         return view
     }()
     
-    lazy var categoriesLabel: UILabel = {
+    public lazy var categoriesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Categories"
@@ -32,7 +32,7 @@ class HomeScreen: UIView {
         return label
     }()
     
-    lazy var jokesTableView: UITableView = {
+    public lazy var jokesTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .singleLine
@@ -51,7 +51,7 @@ class HomeScreen: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configTableViewProtocols(delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
+    public func configTableViewProtocols(delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
         jokesTableView.delegate = delegate
         jokesTableView.dataSource = dataSource
     }
@@ -81,7 +81,7 @@ class HomeScreen: UIView {
             topYellowView.heightAnchor.constraint(equalToConstant: 80),
         
             categoriesLabel.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
-            categoriesLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
+            categoriesLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             
             jokesTableView.topAnchor.constraint(equalTo: topView.bottomAnchor),
             jokesTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),

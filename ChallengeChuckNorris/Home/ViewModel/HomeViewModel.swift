@@ -22,8 +22,24 @@ protocol HomeViewModelDelegate: AnyObject {
 }
 
 class HomeViewModel {
+
+    private var dataCategories: [CategoriesTest] = [CategoriesTest(categories: "Animal"),
+                                                    CategoriesTest(categories: "Career"),
+                                                    CategoriesTest(categories: "Celebrity"),
+                                                    CategoriesTest(categories: "Dev"),
+                                                    CategoriesTest(categories: "Explicit"),
+                                                    CategoriesTest(categories: "Fashion"),
+                                                    CategoriesTest(categories: "Food"),
+                                                    CategoriesTest(categories: "History"),
+                                                    CategoriesTest(categories: "Money"),
+                                                    CategoriesTest(categories: "Movie"),
+                                                    CategoriesTest(categories: "Music"),
+                                                    CategoriesTest(categories: "Political"),
+                                                    CategoriesTest(categories: "Religion"),
+                                                    CategoriesTest(categories: "Science"),
+                                                    CategoriesTest(categories: "Sport"),
+                                                    CategoriesTest(categories: "Travel")]
     
-    private var dataCategories: [Categories] = []
     private let service: CategoriesJokesService = CategoriesJokesService()
     private weak var delegate: HomeViewModelDelegate?
     
@@ -60,7 +76,7 @@ class HomeViewModel {
         return dataCategories.count
     }
     
-    public func loadCurrentDriver(indexPath: IndexPath) -> Categories {
+    public func loadCurrentDriver(indexPath: IndexPath) -> CategoriesTest {
         return dataCategories[indexPath.row]
     }
 }

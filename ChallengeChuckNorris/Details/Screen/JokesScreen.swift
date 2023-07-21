@@ -9,6 +9,7 @@ import UIKit
 
 protocol JokesScreenProtocol: AnyObject {
     func actionBackButton()
+    func actionRefreshButton()
 }
 
 class JokesScreen: UIView {
@@ -32,16 +33,47 @@ class JokesScreen: UIView {
         return view
     }()
     
-    private lazy var categoriesLabel: UILabel = {
+    public lazy var categoriesLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Animal"
+        label.text = ""
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 25)
         return label
     }()
     
-    lazy var backButton: UIButton = {
+    private lazy var chuckImage: UIImageView = {
+        let image = UIImageView()
+        image.translatesAutoresizingMaskIntoConstraints = false
+        image.image = UIImage(named: "LogoLaunch")
+        return image
+    }()
+    
+    public lazy var jokeLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Chuck Norris appeared in the 'Street Fighter II' video game, but was removed by Beta Testers because every button caused him to do a roundhouse kick. When asked bout this “glitch,” Chuck Norris replied, “That's no glitch.”"
+        label.textColor = .black
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 16)
+        return label
+    }()
+    
+    private lazy var refreshButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Refresh", for: .normal)
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
+        button.setTitleColor(.white, for: .normal)
+        button.clipsToBounds = true
+        button.layer.cornerRadius = 7.5
+        button.backgroundColor = .getNavColor()
+        button.addTarget(self, action: #selector(tappedRefreshButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var backButton: UIButton = {
        let backButton = UIButton()
         backButton.translatesAutoresizingMaskIntoConstraints = false
         let config = UIImage.SymbolConfiguration(pointSize: 30)
@@ -51,6 +83,10 @@ class JokesScreen: UIView {
         backButton.addTarget(self, action: #selector(tappedBackButton), for: .touchUpInside)
         return backButton
     }()
+    
+    @objc func tappedRefreshButton() {
+        self.delegate?.actionRefreshButton()
+    }
     
     @objc func tappedBackButton() {
         self.delegate?.actionBackButton()
@@ -72,6 +108,9 @@ class JokesScreen: UIView {
         addSubview(topYellowView)
         addSubview(categoriesLabel)
         addSubview(backButton)
+        addSubview(chuckImage)
+        addSubview(jokeLabel)
+        addSubview(refreshButton)
     }
     
     private func configBackground() {
@@ -99,6 +138,19 @@ class JokesScreen: UIView {
             backButton.heightAnchor.constraint(equalToConstant: 25),
             backButton.widthAnchor.constraint(equalToConstant: 120),
             
+            chuckImage.topAnchor.constraint(equalTo: topView.bottomAnchor, constant: 20),
+            chuckImage.centerXAnchor.constraint(equalTo: centerXAnchor),
+            chuckImage.widthAnchor.constraint(equalToConstant: 80),
+            chuckImage.heightAnchor.constraint(equalToConstant: 80),
+            
+            jokeLabel.topAnchor.constraint(equalTo: chuckImage.bottomAnchor, constant: 10),
+            jokeLabel.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            jokeLabel.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -24),
+            
+            refreshButton.topAnchor.constraint(equalTo: jokeLabel.bottomAnchor, constant: 20),
+            refreshButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 24),
+            refreshButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -24),
+            refreshButton.heightAnchor.constraint(equalToConstant: 40)
         ])
     }
 }
