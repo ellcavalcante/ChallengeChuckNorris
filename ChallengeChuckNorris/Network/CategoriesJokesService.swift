@@ -21,6 +21,7 @@ class CategoriesJokesService: CategoriesJokesDelegate {
             switch response.result {
             case .success(let success):
                 completion(success, nil)
+                print(success)
             case .failure(let error):
                 completion(nil, Error.errorRequest(error))
             }
@@ -31,8 +32,9 @@ class CategoriesJokesService: CategoriesJokesDelegate {
         if let name = Bundle.main.url(forResource: name, withExtension: "json"){
             do {
                 let data = try Data(contentsOf: name)
-                let listConstructors = try JSONDecoder().decode(Categories.self, from: data)
-                completion(listConstructors, nil)
+                let jokesCategories = try JSONDecoder().decode(Categories.self, from: data)
+                completion(jokesCategories, nil)
+                print(jokesCategories)
             } catch {
                 completion(nil, Error.fileDecodingFailed(name: "categoriJokes", error))
             }

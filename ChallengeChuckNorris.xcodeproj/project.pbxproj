@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B3C79E02A70C5990050CB0A /* Joke.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B3C79DF2A70C5990050CB0A /* Joke.swift */; };
 		0B85D6472A65FFF50065FF1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B85D6462A65FFF50065FF1F /* AppDelegate.swift */; };
 		0B85D6492A65FFF50065FF1F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B85D6482A65FFF50065FF1F /* SceneDelegate.swift */; };
 		0B85D6502A65FFF50065FF1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0B85D64F2A65FFF50065FF1F /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 
 /* Begin PBXFileReference section */
 		05E0147CFD3AD249E6C7A0B2 /* Pods-ChallengeChuckNorris-ChallengeChuckNorrisUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallengeChuckNorris-ChallengeChuckNorrisUITests.release.xcconfig"; path = "Target Support Files/Pods-ChallengeChuckNorris-ChallengeChuckNorrisUITests/Pods-ChallengeChuckNorris-ChallengeChuckNorrisUITests.release.xcconfig"; sourceTree = "<group>"; };
+		0B3C79DF2A70C5990050CB0A /* Joke.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Joke.swift; sourceTree = "<group>"; };
 		0B85D6432A65FFF50065FF1F /* ChallengeChuckNorris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ChallengeChuckNorris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0B85D6462A65FFF50065FF1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0B85D6482A65FFF50065FF1F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 			children = (
 				0B85D6892A662AC00065FF1F /* Categories.swift */,
 				0BE0C69F2A67563D007FB1CB /* CategoriesTest.swift */,
+				0B3C79DF2A70C5990050CB0A /* Joke.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -554,6 +557,7 @@
 				0B85D6822A6622E50065FF1F /* CategoriesJokesService.swift in Sources */,
 				0B85D6472A65FFF50065FF1F /* AppDelegate.swift in Sources */,
 				0B85D6492A65FFF50065FF1F /* SceneDelegate.swift in Sources */,
+				0B3C79E02A70C5990050CB0A /* Joke.swift in Sources */,
 				0BE0C6A72A676993007FB1CB /* JokesScreen.swift in Sources */,
 				0B85D6782A6602EE0065FF1F /* HomeViewController.swift in Sources */,
 				0BE0C6A52A676942007FB1CB /* JokesViewController.swift in Sources */,

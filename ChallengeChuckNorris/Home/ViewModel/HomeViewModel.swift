@@ -23,7 +23,7 @@ protocol HomeViewModelDelegate: AnyObject {
 
 class HomeViewModel {
 
-    private var dataCategories: [CategoriesTest] = [CategoriesTest(categories: "Animal"),
+    public var dataCategories: [CategoriesTest] = [CategoriesTest(categories: "Animal"),
                                                     CategoriesTest(categories: "Career"),
                                                     CategoriesTest(categories: "Celebrity"),
                                                     CategoriesTest(categories: "Dev"),
@@ -40,6 +40,9 @@ class HomeViewModel {
                                                     CategoriesTest(categories: "Sport"),
                                                     CategoriesTest(categories: "Travel")]
     
+    public var requestCategories: [Categories] = []
+    
+    
     private let service: CategoriesJokesService = CategoriesJokesService()
     private weak var delegate: HomeViewModelDelegate?
     
@@ -52,7 +55,7 @@ class HomeViewModel {
         case .mock:
             self.service.getCategoriesDataFromJson(fromFileName: "categoriJokes") { success, error in
                 if let success = success {
-                
+                    
                     self.delegate?.success()
                 } else {
                     self.delegate?.error(error?.localizedDescription ?? "")
@@ -60,9 +63,8 @@ class HomeViewModel {
             }
 
         case .request:
-            self.service.getCategoriesData(fromURL: "https://api.chucknorris.io/jokes/categories.json") { success, error in
+            self.service.getCategoriesData(fromURL: "https://api.chucknorris.io/jokes/categories") { success, error in
                 if let success = success {
-                    
                     
                     self.delegate?.success()
                 } else {

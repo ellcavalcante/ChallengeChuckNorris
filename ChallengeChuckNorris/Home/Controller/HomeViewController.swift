@@ -21,23 +21,6 @@ class HomeViewController: UIViewController {
     var homeScreen: HomeScreen?
     var homeViewModel: HomeViewModel = HomeViewModel()
     
-    var categories: [CategoriesTest] = [CategoriesTest(categories: "Animal"),
-                                        CategoriesTest(categories: "Career"),
-                                        CategoriesTest(categories: "Celebrity"),
-                                        CategoriesTest(categories: "Dev"),
-                                        CategoriesTest(categories: "Explicit"),
-                                        CategoriesTest(categories: "Fashion"),
-                                        CategoriesTest(categories: "Food"),
-                                        CategoriesTest(categories: "History"),
-                                        CategoriesTest(categories: "Money"),
-                                        CategoriesTest(categories: "Movie"),
-                                        CategoriesTest(categories: "Music"),
-                                        CategoriesTest(categories: "Political"),
-                                        CategoriesTest(categories: "Religion"),
-                                        CategoriesTest(categories: "Science"),
-                                        CategoriesTest(categories: "Sport"),
-                                        CategoriesTest(categories: "Travel")]
-    
     override func loadView() {
         homeScreen = HomeScreen()
         view = homeScreen
@@ -47,7 +30,7 @@ class HomeViewController: UIViewController {
         super.viewDidLoad()
         homeViewModel.delegate(delegate: self)
         homeViewModel.fetch(.request)
-        self.homeScreen?.configTableViewProtocols(delegate: self, dataSource: self)
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,7 +46,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesTableViewCell.identifier, for: indexPath) as? CategoriesTableViewCell
-        cell?.setUpCell(data: categories[indexPath.row])
+        cell?.setUpCell(data: homeViewModel.dataCategories[indexPath.row])
         cell?.selectionStyle = .none
         return cell ?? UITableViewCell()
     }
@@ -81,7 +64,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension HomeViewController: HomeViewModelDelegate {
     func success() {
-        
+        self.homeScreen?.configTableViewProtocols(delegate: self, dataSource: self)
         reloadTableView()
     }
     
