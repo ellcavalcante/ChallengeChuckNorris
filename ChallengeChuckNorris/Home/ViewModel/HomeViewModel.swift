@@ -22,25 +22,8 @@ protocol HomeViewModelDelegate: AnyObject {
 }
 
 class HomeViewModel {
-
-    public var dataCategories: [CategoriesTest] = [CategoriesTest(categories: "Animal"),
-                                                    CategoriesTest(categories: "Career"),
-                                                    CategoriesTest(categories: "Celebrity"),
-                                                    CategoriesTest(categories: "Dev"),
-                                                    CategoriesTest(categories: "Explicit"),
-                                                    CategoriesTest(categories: "Fashion"),
-                                                    CategoriesTest(categories: "Food"),
-                                                    CategoriesTest(categories: "History"),
-                                                    CategoriesTest(categories: "Money"),
-                                                    CategoriesTest(categories: "Movie"),
-                                                    CategoriesTest(categories: "Music"),
-                                                    CategoriesTest(categories: "Political"),
-                                                    CategoriesTest(categories: "Religion"),
-                                                    CategoriesTest(categories: "Science"),
-                                                    CategoriesTest(categories: "Sport"),
-                                                    CategoriesTest(categories: "Travel")]
     
-    public var requestCategories: [Categories] = []
+    public var requestCategories: [String] = []
     
     
     private let service: CategoriesJokesService = CategoriesJokesService()
@@ -55,7 +38,7 @@ class HomeViewModel {
         case .mock:
             self.service.getCategoriesDataFromJson(fromFileName: "categoriJokes") { success, error in
                 if let success = success {
-                    
+                    self.requestCategories = success
                     self.delegate?.success()
                 } else {
                     self.delegate?.error(error?.localizedDescription ?? "")
@@ -65,7 +48,7 @@ class HomeViewModel {
         case .request:
             self.service.getCategoriesData(fromURL: "https://api.chucknorris.io/jokes/categories") { success, error in
                 if let success = success {
-                    
+                    self.requestCategories = success
                     self.delegate?.success()
                 } else {
                     self.delegate?.error(error?.localizedDescription ?? "")
@@ -75,11 +58,11 @@ class HomeViewModel {
     }
     
     public var numberOfRows:Int {
-        return dataCategories.count
+        return requestCategories.count
     }
     
-    public func loadCurrentDriver(indexPath: IndexPath) -> CategoriesTest {
-        return dataCategories[indexPath.row]
+    public func loadCategory(indexPath: IndexPath) -> String {
+        return requestCategories[indexPath.row]
     }
 }
 

@@ -24,7 +24,6 @@
 		0B85D68A2A662AC00065FF1F /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B85D6892A662AC00065FF1F /* Categories.swift */; };
 		0BE0C69B2A673E86007FB1CB /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0C69A2A673E86007FB1CB /* HomeViewModel.swift */; };
 		0BE0C69E2A674C56007FB1CB /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0C69D2A674C56007FB1CB /* CategoriesTableViewCell.swift */; };
-		0BE0C6A02A67563D007FB1CB /* CategoriesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0C69F2A67563D007FB1CB /* CategoriesTest.swift */; };
 		0BE0C6A52A676942007FB1CB /* JokesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0C6A42A676942007FB1CB /* JokesViewController.swift */; };
 		0BE0C6A72A676993007FB1CB /* JokesScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BE0C6A62A676993007FB1CB /* JokesScreen.swift */; };
 		5A8A53607A7B98EDF5CB8716 /* Pods_ChallengeChuckNorris.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E0212D2B14BA4C04DD800EDB /* Pods_ChallengeChuckNorris.framework */; };
@@ -72,7 +71,6 @@
 		0B85D6892A662AC00065FF1F /* Categories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Categories.swift; sourceTree = "<group>"; };
 		0BE0C69A2A673E86007FB1CB /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		0BE0C69D2A674C56007FB1CB /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
-		0BE0C69F2A67563D007FB1CB /* CategoriesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesTest.swift; sourceTree = "<group>"; };
 		0BE0C6A42A676942007FB1CB /* JokesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesViewController.swift; sourceTree = "<group>"; };
 		0BE0C6A62A676993007FB1CB /* JokesScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JokesScreen.swift; sourceTree = "<group>"; };
 		1E65993B491C8BAFC5A78D88 /* Pods-ChallengeChuckNorris-ChallengeChuckNorrisUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChallengeChuckNorris-ChallengeChuckNorrisUITests.debug.xcconfig"; path = "Target Support Files/Pods-ChallengeChuckNorris-ChallengeChuckNorrisUITests/Pods-ChallengeChuckNorris-ChallengeChuckNorrisUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -208,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				0B85D6892A662AC00065FF1F /* Categories.swift */,
-				0BE0C69F2A67563D007FB1CB /* CategoriesTest.swift */,
 				0B3C79DF2A70C5990050CB0A /* Joke.swift */,
 			);
 			path = Models;
@@ -561,7 +558,6 @@
 				0BE0C6A72A676993007FB1CB /* JokesScreen.swift in Sources */,
 				0B85D6782A6602EE0065FF1F /* HomeViewController.swift in Sources */,
 				0BE0C6A52A676942007FB1CB /* JokesViewController.swift in Sources */,
-				0BE0C6A02A67563D007FB1CB /* CategoriesTest.swift in Sources */,
 				0B85D67D2A6615FC0065FF1F /* UiColorExtensions.swift in Sources */,
 				0B85D6802A6622910065FF1F /* GenericsService.swift in Sources */,
 				0BE0C69E2A674C56007FB1CB /* CategoriesTableViewCell.swift in Sources */,

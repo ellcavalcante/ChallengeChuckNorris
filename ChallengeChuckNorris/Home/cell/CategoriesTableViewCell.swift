@@ -38,8 +38,8 @@ class CategoriesTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func setUpCell(data: CategoriesTest) {
-        self.categoriesLabel.text = data.categories
+    public func setUpCell(data: String) {
+        self.categoriesLabel.text = data
     }
     
     private func addSubview() {

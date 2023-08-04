@@ -8,7 +8,7 @@
 import UIKit
 
 protocol HomeViewControllerProtocol {
-    func changeTitle(title: CategoriesTest)
+    func changeTitle(title: String)
 }
 
 class HomeViewController: UIViewController {
@@ -46,7 +46,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesTableViewCell.identifier, for: indexPath) as? CategoriesTableViewCell
-        cell?.setUpCell(data: homeViewModel.dataCategories[indexPath.row])
+        cell?.setUpCell(data: homeViewModel.requestCategories[indexPath.row])
         cell?.selectionStyle = .none
         return cell ?? UITableViewCell()
     }
@@ -56,9 +56,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = JokesViewController(data: homeViewModel.loadCurrentDriver(indexPath: indexPath))
+        let vc = JokesViewController(data: homeViewModel.loadCategory(indexPath: indexPath))
         self.navigationController?.pushViewController(vc, animated: true)
-        delegate?.changeTitle(title: homeViewModel.loadCurrentDriver(indexPath: indexPath))
     }
 }
 

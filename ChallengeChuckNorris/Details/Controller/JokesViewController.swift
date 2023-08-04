@@ -12,9 +12,9 @@ class JokesViewController: UIViewController {
     var jokesScreen: JokesScreen?
     var homeViewController: HomeViewController = HomeViewController()
     
-    var data: CategoriesTest
+    var data: String
     
-    required init(data: CategoriesTest) {
+    required init(data: String) {
         self.data = data
         super.init(nibName: nil, bundle: nil)
     }
@@ -24,7 +24,7 @@ class JokesViewController: UIViewController {
     }
     
     private func passingTitleData() {
-        jokesScreen?.categoriesLabel.text = data.categories
+        jokesScreen?.categoriesLabel.text = data
     }
     
     override func loadView() {
