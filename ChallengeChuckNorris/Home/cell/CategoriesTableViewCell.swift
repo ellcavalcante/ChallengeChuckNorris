@@ -40,6 +40,7 @@ class CategoriesTableViewCell: UITableViewCell {
     
     public func setUpCell(data: String) {
         self.categoriesLabel.text = data
+        
     }
     
     private func addSubview() {

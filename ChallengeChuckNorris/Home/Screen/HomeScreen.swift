@@ -32,7 +32,7 @@ class HomeScreen: UIView {
         return label
     }()
     
-    public lazy var jokesTableView: UITableView = {
+    public lazy var categoryTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.separatorStyle = .singleLine
@@ -52,8 +52,8 @@ class HomeScreen: UIView {
     }
     
     public func configTableViewProtocols(delegate: UITableViewDelegate, dataSource: UITableViewDataSource) {
-        jokesTableView.delegate = delegate
-        jokesTableView.dataSource = dataSource
+        categoryTableView.delegate = delegate
+        categoryTableView.dataSource = dataSource
     }
     
     private func configBackground() {
@@ -64,7 +64,7 @@ class HomeScreen: UIView {
         addSubview(topYellowView)
         addSubview(topView)
         addSubview(categoriesLabel)
-        addSubview(jokesTableView)
+        addSubview(categoryTableView)
     }
     
     private func setUpConstraints() {
@@ -83,10 +83,10 @@ class HomeScreen: UIView {
             categoriesLabel.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
             categoriesLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             
-            jokesTableView.topAnchor.constraint(equalTo: topView.bottomAnchor),
-            jokesTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
-            jokesTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
-            jokesTableView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+            categoryTableView.topAnchor.constraint(equalTo: topView.bottomAnchor),
+            categoryTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
+            categoryTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
+            categoryTableView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
         ])
     }
 }

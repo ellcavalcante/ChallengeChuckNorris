@@ -7,33 +7,33 @@
 
 import UIKit
 
-enum HomeTypeFetch {
+enum CategoryTypeFetch {
     case mock
     case request
 }
 
-protocol HomeViewModelProtocol: AnyObject {
+protocol CategoryViewModelProtocol: AnyObject {
     func reloadTableView()
 }
 
-protocol HomeViewModelDelegate: AnyObject {
+protocol CategoryViewModelDelegate: AnyObject {
     func success()
     func error(_ message: String)
 }
 
-class HomeViewModel {
+class CategoryViewModel {
     
     public var requestCategories: [String] = []
     
     
     private let service: CategoriesJokesService = CategoriesJokesService()
-    private weak var delegate: HomeViewModelDelegate?
+    private weak var delegate: CategoryViewModelDelegate?
     
-    public func delegate(delegate: HomeViewModelDelegate?) {
+    public func delegate(delegate: CategoryViewModelDelegate?) {
         self.delegate = delegate
     }
     
-    public func fetch(_ typeFetch: HomeTypeFetch){
+    public func fetch(_ typeFetch: CategoryTypeFetch){
         switch typeFetch {
         case .mock:
             self.service.getCategoriesDataFromJson(fromFileName: "categoriJokes") { success, error in

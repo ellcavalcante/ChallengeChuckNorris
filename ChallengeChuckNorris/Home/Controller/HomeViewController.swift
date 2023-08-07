@@ -19,7 +19,8 @@ class HomeViewController: UIViewController {
     }
     
     var homeScreen: HomeScreen?
-    var homeViewModel: HomeViewModel = HomeViewModel()
+    var categoryViewModel: CategoryViewModel = CategoryViewModel()
+    var jokeViewModel: JokeViewModel = JokeViewModel()
     
     override func loadView() {
         homeScreen = HomeScreen()
@@ -28,8 +29,9 @@ class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        homeViewModel.delegate(delegate: self)
-        homeViewModel.fetch(.request)
+        categoryViewModel.delegate(delegate: self)
+        categoryViewModel.fetch(.request)
+        jokeViewModel.fetch(.request)
         
     }
     
@@ -41,12 +43,12 @@ class HomeViewController: UIViewController {
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return homeViewModel.numberOfRows
+        return categoryViewModel.numberOfRows
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CategoriesTableViewCell.identifier, for: indexPath) as? CategoriesTableViewCell
-        cell?.setUpCell(data: homeViewModel.requestCategories[indexPath.row])
+        cell?.setUpCell(data: categoryViewModel.requestCategories[indexPath.row])
         cell?.selectionStyle = .none
         return cell ?? UITableViewCell()
     }
@@ -56,12 +58,12 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let vc = JokesViewController(data: homeViewModel.loadCategory(indexPath: indexPath))
+        let vc = JokesViewController(data: categoryViewModel.loadCategory(indexPath: indexPath))
         self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 
-extension HomeViewController: HomeViewModelDelegate {
+extension HomeViewController: CategoryViewModelDelegate {
     func success() {
         self.homeScreen?.configTableViewProtocols(delegate: self, dataSource: self)
         reloadTableView()
@@ -72,8 +74,8 @@ extension HomeViewController: HomeViewModelDelegate {
     }
 }
 
-extension HomeViewController: HomeViewModelProtocol {
+extension HomeViewController: CategoryViewModelProtocol {
     func reloadTableView() {
-        self.homeScreen?.jokesTableView.reloadData()
+        self.homeScreen?.categoryTableView.reloadData()
     }
 }
