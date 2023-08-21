@@ -21,7 +21,6 @@ class JokesService: JokesDelegate {
             switch response.result {
             case .success(let success):
                 completion(success, nil)
-                print(success)
             case .failure(let error):
                 completion(nil, Error.errorRequest(error))
             }

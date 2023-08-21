@@ -11,6 +11,7 @@ class JokesViewController: UIViewController {
     
     var jokesScreen: JokesScreen?
     var homeViewController: HomeViewController = HomeViewController()
+    var viewModel: JokeViewModel = JokeViewModel()
     
     var data: String
     
@@ -36,12 +37,29 @@ class JokesViewController: UIViewController {
         super.viewDidLoad()
         self.jokesScreen?.delegate(delegate: self)
         passingTitleData()
-        
+        viewModel.fetch(.request)
+        viewModel.delegate(delegate: self)
+        self.jokesScreen?.activityIndicator.startAnimating()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.isNavigationBarHidden = true
+    }
+}
+
+extension JokesViewController: JokeViewModelDelegate {
+    func success() {
+        self.jokesScreen?.jokeLabel.text = viewModel.requestJoke
+        self.jokesScreen?.activityIndicator.stopAnimating()
+        self.jokesScreen?.refreshButton.setTitle("Refresh", for: .normal)
+        self.jokesScreen?.refreshButton.backgroundColor = UIColor.getNavColor()
+    }
+    
+    func error(_ message: String) {
+        let alert = UIAlertController(title: "⚠️ Aviso ⚠️", message: "Aconteceu um erro inesperado, por favor, tente mais tarde", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alert, animated: true)
     }
 }
 

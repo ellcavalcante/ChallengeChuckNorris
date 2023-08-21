@@ -52,7 +52,6 @@ class JokesScreen: UIView {
     public lazy var jokeLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Chuck Norris appeared in the 'Street Fighter II' video game, but was removed by Beta Testers because every button caused him to do a roundhouse kick. When asked bout this “glitch,” Chuck Norris replied, “That's no glitch.”"
         label.textColor = .black
         label.numberOfLines = 0
         label.textAlignment = .center
@@ -60,21 +59,21 @@ class JokesScreen: UIView {
         return label
     }()
     
-    private lazy var refreshButton: UIButton = {
+    public lazy var refreshButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("Refresh", for: .normal)
+        button.setTitle("", for: .normal)
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 22)
         button.setTitleColor(.white, for: .normal)
         button.clipsToBounds = true
         button.layer.cornerRadius = 7.5
-        button.backgroundColor = .getNavColor()
+        button.backgroundColor = UIColor.lightGray
         button.addTarget(self, action: #selector(tappedRefreshButton), for: .touchUpInside)
         return button
     }()
     
     private lazy var backButton: UIButton = {
-       let backButton = UIButton()
+        let backButton = UIButton()
         backButton.translatesAutoresizingMaskIntoConstraints = false
         let config = UIImage.SymbolConfiguration(pointSize: 30)
         backButton.setImage(UIImage(systemName: "chevron.backward")?.withConfiguration(config), for: .normal)
@@ -91,6 +90,15 @@ class JokesScreen: UIView {
     @objc func tappedBackButton() {
         self.delegate?.actionBackButton()
     }
+    
+    public lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.color = .black
+        indicator.style = .medium
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -111,6 +119,7 @@ class JokesScreen: UIView {
         addSubview(chuckImage)
         addSubview(jokeLabel)
         addSubview(refreshButton)
+        refreshButton.addSubview(activityIndicator)
     }
     
     private func configBackground() {
@@ -124,12 +133,12 @@ class JokesScreen: UIView {
             topView.trailingAnchor.constraint(equalTo: trailingAnchor),
             topView.topAnchor.constraint(equalTo: topYellowView.bottomAnchor),
             topView.heightAnchor.constraint(equalToConstant: 45),
-        
+            
             topYellowView.leadingAnchor.constraint(equalTo: leadingAnchor),
             topYellowView.trailingAnchor.constraint(equalTo: trailingAnchor),
             topYellowView.topAnchor.constraint(equalTo: topAnchor),
             topYellowView.heightAnchor.constraint(equalToConstant: 80),
-        
+            
             categoriesLabel.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
             categoriesLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 16),
             
@@ -150,7 +159,10 @@ class JokesScreen: UIView {
             refreshButton.topAnchor.constraint(equalTo: jokeLabel.bottomAnchor, constant: 20),
             refreshButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 24),
             refreshButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -24),
-            refreshButton.heightAnchor.constraint(equalToConstant: 40)
+            refreshButton.heightAnchor.constraint(equalToConstant: 40),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: refreshButton.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: refreshButton.centerYAnchor),
         ])
     }
 }

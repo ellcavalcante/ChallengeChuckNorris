@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - JokesModel
-struct Joke: Decodable {
+struct Joke: Codable {
     var categories: [String]
     var createdAt: String
     var iconURL: String

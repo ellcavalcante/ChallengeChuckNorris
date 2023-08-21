@@ -39,7 +39,16 @@ class HomeScreen: UIView {
         tableView.register(CategoriesTableViewCell.self, forCellReuseIdentifier: CategoriesTableViewCell.identifier)
         return tableView
     }()
-
+    
+    public lazy var activityIndicator: UIActivityIndicatorView = {
+        let indicator = UIActivityIndicatorView()
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.color = .black
+        indicator.style = .large
+        indicator.hidesWhenStopped = true
+        return indicator
+    }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         addSubview()
@@ -65,6 +74,7 @@ class HomeScreen: UIView {
         addSubview(topView)
         addSubview(categoriesLabel)
         addSubview(categoryTableView)
+        addSubview(activityIndicator)
     }
     
     private func setUpConstraints() {
@@ -74,12 +84,12 @@ class HomeScreen: UIView {
             topView.trailingAnchor.constraint(equalTo: trailingAnchor),
             topView.topAnchor.constraint(equalTo: topYellowView.bottomAnchor),
             topView.heightAnchor.constraint(equalToConstant: 45),
-        
+            
             topYellowView.leadingAnchor.constraint(equalTo: leadingAnchor),
             topYellowView.trailingAnchor.constraint(equalTo: trailingAnchor),
             topYellowView.topAnchor.constraint(equalTo: topAnchor),
             topYellowView.heightAnchor.constraint(equalToConstant: 80),
-        
+            
             categoriesLabel.centerXAnchor.constraint(equalTo: topView.centerXAnchor),
             categoriesLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 20),
             
@@ -87,6 +97,11 @@ class HomeScreen: UIView {
             categoryTableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             categoryTableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
             categoryTableView.bottomAnchor.constraint(equalTo: layoutMarginsGuide.bottomAnchor),
+            
+            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor),
+            activityIndicator.heightAnchor.constraint(equalToConstant: 100),
+            activityIndicator.widthAnchor.constraint(equalToConstant: 100),
         ])
     }
 }

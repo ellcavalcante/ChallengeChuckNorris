@@ -8,7 +8,7 @@
 import UIKit
 
 class CategoriesTableViewCell: UITableViewCell {
-
+    
     static let identifier: String = String(describing: CategoriesTableViewCell.self)
     
     public lazy var categoriesLabel: UILabel = {
@@ -21,13 +21,13 @@ class CategoriesTableViewCell: UITableViewCell {
     }()
     
     private lazy var fowardButton: UIImageView = {
-       let fowardButton = UIImageView()
+        let fowardButton = UIImageView()
         fowardButton.translatesAutoresizingMaskIntoConstraints = false
         fowardButton.tintColor = .black
         fowardButton.image = UIImage(systemName: "chevron.right")
         return fowardButton
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview()
@@ -58,7 +58,7 @@ class CategoriesTableViewCell: UITableViewCell {
             fowardButton.heightAnchor.constraint(equalToConstant: 20),
             fowardButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -8),
             fowardButton.centerYAnchor.constraint(equalTo: centerYAnchor),
-        
+            
         ])
     }
 }

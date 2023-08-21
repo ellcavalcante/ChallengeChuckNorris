@@ -26,12 +26,12 @@ class HomeViewController: UIViewController {
         homeScreen = HomeScreen()
         view = homeScreen
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         categoryViewModel.delegate(delegate: self)
         categoryViewModel.fetch(.request)
-        jokeViewModel.fetch(.request)
+        homeScreen?.activityIndicator.startAnimating()
         
     }
     
@@ -66,11 +66,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
 extension HomeViewController: CategoryViewModelDelegate {
     func success() {
         self.homeScreen?.configTableViewProtocols(delegate: self, dataSource: self)
+        homeScreen?.activityIndicator.stopAnimating()
         reloadTableView()
     }
     
     func error(_ message: String) {
-        
+        let alert = UIAlertController(title: "⚠️ Aviso ⚠️", message: "Aconteceu um erro inesperado, por favor, tente mais tarde", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alert, animated: true)
     }
 }
 

@@ -142,8 +142,8 @@
 		0B85D6452A65FFF50065FF1F /* ChallengeChuckNorris */ = {
 			isa = PBXGroup;
 			children = (
-				0BE0C6992A673E5F007FB1CB /* ViewModels */,
 				0B85D6542A65FFF50065FF1F /* Info.plist */,
+				0BE0C6992A673E5F007FB1CB /* ViewModels */,
 				0BE0C6AA2A676B3D007FB1CB /* Resources */,
 				0BE0C6A32A67690E007FB1CB /* Details */,
 				0BE0C6A12A676877007FB1CB /* AppSceneDelegate */,

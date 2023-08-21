@@ -44,7 +44,7 @@ class CategoryViewModel {
                     self.delegate?.error(error?.localizedDescription ?? "")
                 }
             }
-
+            
         case .request:
             self.service.getCategoriesData(fromURL: "https://api.chucknorris.io/jokes/categories") { success, error in
                 if let success = success {
