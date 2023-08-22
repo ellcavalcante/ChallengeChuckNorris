@@ -37,7 +37,7 @@ class JokesViewController: UIViewController {
         super.viewDidLoad()
         self.jokesScreen?.delegate(delegate: self)
         passingTitleData()
-        viewModel.fetch(.request)
+        viewModel.fetch(.request,category: data)
         viewModel.delegate(delegate: self)
         self.jokesScreen?.activityIndicator.startAnimating()
     }
@@ -51,9 +51,7 @@ class JokesViewController: UIViewController {
 extension JokesViewController: JokeViewModelDelegate {
     func success() {
         self.jokesScreen?.jokeLabel.text = viewModel.requestJoke
-        self.jokesScreen?.activityIndicator.stopAnimating()
-        self.jokesScreen?.refreshButton.setTitle("Refresh", for: .normal)
-        self.jokesScreen?.refreshButton.backgroundColor = UIColor.getNavColor()
+        self.jokesScreen?.loadButton()
     }
     
     func error(_ message: String) {
@@ -65,7 +63,8 @@ extension JokesViewController: JokeViewModelDelegate {
 
 extension JokesViewController: JokesScreenProtocol {
     func actionRefreshButton() {
-        print("button pressed!")
+        self.jokesScreen?.refreshJokeButton()
+        viewModel.fetch(.request,category: data)
     }
     
     func actionBackButton() {

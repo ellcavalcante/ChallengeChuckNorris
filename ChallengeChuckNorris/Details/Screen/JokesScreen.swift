@@ -126,6 +126,18 @@ class JokesScreen: UIView {
         backgroundColor = .white
     }
     
+    public func loadButton() {
+        activityIndicator.stopAnimating()
+        refreshButton.setTitle("Refresh", for: .normal)
+        refreshButton.backgroundColor = UIColor.getNavColor()
+    }
+    
+    public func refreshJokeButton() {
+        refreshButton.backgroundColor = UIColor.lightGray
+        refreshButton.setTitle("", for: .normal)
+        activityIndicator.startAnimating()
+    }
+    
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
             

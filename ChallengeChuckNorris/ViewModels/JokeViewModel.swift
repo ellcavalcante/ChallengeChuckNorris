@@ -28,7 +28,7 @@ class JokeViewModel {
         self.delegate = delegate
     }
     
-    public func fetch(_ typeFetch: JokeTypeFetch){
+    public func fetch(_ typeFetch: JokeTypeFetch, category: String){
         switch typeFetch {
         case .mock:
             self.service.getJokesDataFromJson(fromFileName: "Jokes") { success, error in
@@ -41,7 +41,7 @@ class JokeViewModel {
             }
             
         case .request:
-            self.service.getJokesData(fromURL: "https://api.chucknorris.io/jokes/random?category=dev") { success, error in
+            self.service.getJokesData(fromURL: "https://api.chucknorris.io/jokes/random?category=\(category)") { success, error in
                 if let success = success {
                     self.requestJoke = success.value
                     self.delegate?.success()
