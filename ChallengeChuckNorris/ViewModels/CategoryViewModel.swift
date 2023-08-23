@@ -65,4 +65,3 @@ class CategoryViewModel {
         return requestCategories[indexPath.row]
     }
 }
-

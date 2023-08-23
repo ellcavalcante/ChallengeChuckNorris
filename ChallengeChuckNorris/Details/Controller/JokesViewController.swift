@@ -35,6 +35,10 @@ class JokesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        settings()
+    }
+    
+    private func settings() {
         self.jokesScreen?.delegate(delegate: self)
         passingTitleData()
         viewModel.fetch(.request,category: data)
@@ -71,5 +75,3 @@ extension JokesViewController: JokesScreenProtocol {
         self.navigationController?.popToRootViewController(animated: true)
     }
 }
-
-
